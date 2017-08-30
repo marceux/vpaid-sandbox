@@ -1,0 +1,63 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  padding: 1rem;
+}
+
+.settings__prompt,
+.settings__options,
+.settings__input-container,
+.settings__btn-container {
+  margin-bottom: 1rem;
+}
+
+.settings__prompt h2 {
+  margin: 0px auto;
+}
+
+.settings__options {
+  display: flex;
+  list-style: none;
+  padding: 0px;
+}
+
+.settings__option {
+  align-items: center;
+  justify-content: flex-start;
+  display: flex;
+  margin-right: 2rem;
+}
+
+.settings__option label {
+  line-height: 1;
+  margin-left: 1rem;
+  margin-top: 2px;
+}
+
+.settings__input-container {
+  width: 100%;
+}
+
+.settings__input-container * {
+  width: 100%;
+}
+
+.settings__input-container textarea {
+  max-width: 100%;
+}
+
+.settings__btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.settings__btn-container button {
+  background: #0066FF;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 2px;
+  padding: 0.5rem;
+  font-size: 14px;
+}

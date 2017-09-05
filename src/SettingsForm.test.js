@@ -17,19 +17,14 @@ describe('<SettingsForm />', () => {
     // Test to see that we have our radio options
     expect(component.find('.settings__option').length).toBe(2);
 
-    // Iterate over radios and make sure they are not checked
-    radioOptions.forEach(radioOption => {
-      expect(radioOption.props().checked).toBe(undefined);
-    });
-
     // Check the first option
-    radioOptions.at(0).simulate('click', { target: { checked: true, value: 'URL' } });
+    radioOptions.at(0).simulate('click');
 
     // Expect an input text element
     expect(component.find('.settings__input--url').length).toBe(1);
 
     // Check the second option
-    radioOptions.at(1).simulate('click', { target: { checked: true, value: 'Custom' } });
+    radioOptions.at(1).simulate('click');
 
     // Expect a textarea element
     expect(component.find('.settings__input--custom').length).toBe(1);
@@ -37,10 +32,10 @@ describe('<SettingsForm />', () => {
 
   it('calls an external function when changes are saved with input content', () => {
     // Update the text of the url input...
-    const radioOptions = component.find('.settings__option input');
+    const radioOptions = component.find('.settings__option');
 
     // Select the first option
-    radioOptions.at(0).simulate('click', { target: { checked: true, value: 'URL' } });
+    radioOptions.at(0).simulate('click');
 
     // Update the URL input
     component.find('.settings__input--url').simulate('change', {
@@ -51,7 +46,7 @@ describe('<SettingsForm />', () => {
     component.find('.settings__save-btn').simulate('click'); 
 
     // Select the first option
-    radioOptions.at(1).simulate('click', { target: { checked: true, value: 'Custom' } });
+    radioOptions.at(1).simulate('click');
 
     // Update the custom input
     component.find('.settings__input--custom').simulate('change', {

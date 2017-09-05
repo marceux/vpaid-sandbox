@@ -19,28 +19,30 @@ class SettingsForm extends PureComponent {
     this._renderInput = this._renderInput.bind(this);
   }
 
-  _handleOptionClick(event) {
-    const { checked, value } = event.target;
+  _handleOptionClick(value) {
+    return (event) => {
+      const { selected } = this.state;
 
-    if (checked) {
-      switch (value) {
-        case 'URL':
-        default:
-          this.setState(prevState => ({
-            selected: 0,
-            url: '',
-            custom: '',
-          }));
+      if (selected !== value) {
+        switch (value) {
+          case 0:
+          default:
+            this.setState(prevState => ({
+              selected: 0,
+              url: '',
+              custom: '',
+            }));
 
-          break;
-        case 'Custom':
-          this.setState(prevState => ({
-            selected: 1,
-            url: '',
-            custom: '',
-          }));
+            break;
+          case 1:
+            this.setState(prevState => ({
+              selected: 1,
+              url: '',
+              custom: '',
+            }));
 
-          break;
+            break;
+        }
       }
     }
   }
@@ -102,42 +104,56 @@ class SettingsForm extends PureComponent {
   }
 
   render() {
+    const { disable } = this.props;
+
+    if (disable) {
+      return null;
+    }
+
+    const { selected } = this.state;
+
     return (
-      <div className="settings">
-        <div className="settings__prompt">
-          <h2>How will you provide your VAST tag?</h2>
-        </div>
-        <ul className="settings__options">
-          <li className="settings__option">
-            <input
-              type="radio"
-              name="vast-option"
-              value="URL"
-              defaultChecked
-              onClick={this._handleOptionClick}
-            />
-            <label>URL</label>
-          </li>
-          <li className="settings__option">
-            <input
-              type="radio"
-              name="vast-option"
-              value="Custom"
-              onClick={this._handleOptionClick}
-            />
-            <label>Custom</label>
-          </li>
-        </ul>
-        <div className="settings__input-container">
-          {this._renderInput()}
-        </div>
-        <div className="settings__btn-container">
-          <button
-            className="settings__save-btn"
-            onClick={this._handleSave}
-          >
-            Save Changes
-          </button>
+      <div className="settings__container">
+        <div className="settings">
+          <ul className="settings__options">
+            <li 
+              className="settings__option"
+              onClick={this._handleOptionClick(0)}
+            >
+              <input
+                checked={(selected === 0)}
+                name="vast-option"
+                readOnly
+                type="radio"
+                value="0"
+              />
+              <label>URL</label>
+            </li>
+            <li
+              className="settings__option"
+              onClick={this._handleOptionClick(1)}
+            >
+              <input
+                checked={(selected === 1)}
+                name="vast-option"
+                readOnly
+                type="radio"
+                value="1"
+              />
+              <label>Custom</label>
+            </li>
+          </ul>
+          <div className="settings__input-container">
+            {this._renderInput()}
+          </div>
+          <div className="settings__btn-container">
+            <button
+              className="settings__save-btn"
+              onClick={this._handleSave}
+            >
+              Save Changes
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -145,6 +161,7 @@ class SettingsForm extends PureComponent {
 }
 
 SettingsForm.propTypes = {
+  disable: PropTypes.bool,
   onSaveVast: PropTypes.func.isRequired,
 };
 

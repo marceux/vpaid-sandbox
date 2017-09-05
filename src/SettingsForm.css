@@ -1,6 +1,13 @@
+.settings__container {
+  margin: 0em auto 1em;
+  max-width: 960px;
+  width: 100%;
+}
+
 .settings {
   display: flex;
   flex-direction: column;
+  margin: 0px auto;
   max-width: 480px;
   padding: 1rem;
 }

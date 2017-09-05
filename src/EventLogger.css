@@ -1,0 +1,9 @@
+.event-logger {
+	background: #E9E9E9;
+	height: 20em;
+	margin: 1em auto 0px;
+	width: 100%;
+	max-width: 960px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}

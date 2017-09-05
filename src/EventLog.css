@@ -1,0 +1,9 @@
+.event-logger__log {
+	border-bottom: 1px solid #222;
+	padding: 0.5em;
+	margin: 0px auto;
+}
+
+.event-logger__log:last-child {
+	border-bottom: none;
+}

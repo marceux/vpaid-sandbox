@@ -1,0 +1,20 @@
+.video-wrapper {
+  background: #222;
+  height: 400px;
+  margin-top: 1em;
+  max-height: 100%;
+  max-width: 100%;
+  width: 960px;
+}
+
+.video__blank {
+	align-items: center;
+	background: #222;
+	color: white;
+	display: flex;
+	height: 100%;
+	justify-content: center;
+	min-height: 400px;
+	text-align: center;
+	width: 100%;
+}

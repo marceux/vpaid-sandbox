@@ -1,0 +1,25 @@
+.notifications__container {
+  text-align: center;
+  max-width: 960px;
+  width: 100%;
+}
+
+.notifications {
+  background: #BFD;
+  margin: 2em auto 1em;
+  opacity: 1;
+  overflow: hidden;
+  transition: opacity 1s ease-out, margin 0.25s ease-in, max-height 0.25s ease-in;
+}
+
+.notifications--hidden {
+  margin: 0px auto;
+  max-height: 0px;
+  opacity: 0;
+  transition: opacity 0.25s ease-in, margin 1s ease-out, max-height 1s ease-out;
+}
+
+.notifications p {
+  margin: 0px auto;
+  padding: 1.5em 0px;
+}

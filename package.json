@@ -5,7 +5,9 @@
   "dependencies": {
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-scripts": "1.0.12"
+    "react-scripts": "1.0.12",
+    "socket.io": "^2.0.3",
+    "vast-client": "^1.8.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -15,6 +17,7 @@
   },
   "devDependencies": {
     "enzyme": "^2.9.1",
+    "fetch-mock": "^5.12.2",
     "react-test-renderer": "^15.6.1"
   }
 }

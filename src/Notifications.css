@@ -1,25 +1,21 @@
 .notifications__container {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
   text-align: center;
-  max-width: 960px;
   width: 100%;
 }
 
 .notifications {
-  background: #BFD;
-  margin: 2em auto 1em;
-  opacity: 1;
-  overflow: hidden;
-  transition: opacity 1s ease-out, margin 0.25s ease-in, max-height 0.25s ease-in;
+  background: #222;
+  color: #FFF;
+  padding: 0.5em;
+  transform: translate(0px, 0px);
+  transition: transform 0.25s ease-out;
 }
 
 .notifications--hidden {
-  margin: 0px auto;
-  max-height: 0px;
-  opacity: 0;
-  transition: opacity 0.25s ease-in, margin 1s ease-out, max-height 1s ease-out;
-}
-
-.notifications p {
-  margin: 0px auto;
-  padding: 1.5em 0px;
+  transform: translate(0px, 100%);
+  transition: transform 0.25s ease-in;
 }

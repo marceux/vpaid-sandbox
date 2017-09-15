@@ -8,29 +8,18 @@ describe('<Notifications />', () => {
   let component;
 
   beforeAll(() => {
-    const settings = {
-      url: '',
-      custom: '',
-    };
-
-    component = mount(<Notifications settings={settings} />);
+    component = mount(<Notifications hasUpdated={false} />);
   });
 
-  it('reveals itself and then it hides after 3 seconds', () => {
+  it('remains hidden if hasUpdated is false', () => {
     let notifications = component.find('.notifications');
-
     expect(notifications.hasClass('notifications--hidden')).toBe(true);
+  });
 
-    // Update the props
-    component.setProps({ settings: { url: 'Testing' } });
+  it('reveals itself if hasUpdated is true', () => {
+    component.setProps({ hasUpdated: true });
 
-    notifications = component.find('.notifications');
-
-    expect(notifications.hasClass('notifications--revealed')).toBe(true);
-
-    // Force our 3000ms timer to fire
-    jest.runTimersToTime(3000);
-
-    expect(component.state('hidden')).toBe(true);
+    let notifications = component.find('.notifications');
+    expect(notifications.hasClass('notifications--visible')).toBe(true);
   });
 });

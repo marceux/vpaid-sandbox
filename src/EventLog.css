@@ -1,9 +1,46 @@
-.event-logger__log {
-	border-bottom: 1px solid #222;
-	padding: 0.5em;
+.event-log {
+	align-items: center;
+	justify-content: flex-start;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+	color: #222;
+	display: flex;
 	margin: 0px auto;
+	padding: 0.5em;
 }
 
-.event-logger__log:last-child {
+.event-log:last-child {
 	border-bottom: none;
+}
+
+.event-log--subscribe {
+	background: rgba(130, 195, 255, 0.1);
+}
+
+.event-log--unsubscribe {
+	background: rgba(255, 130, 130, 0.1);
+}
+
+.event-log--dispatch {
+	background: rgba(130, 255, 136, 0.1);
+}
+
+.event-log > * {
+	flex-grow: 1;
+	text-align: left;
+}
+
+.event-log__category {
+	flex-basis: 285px;
+}
+
+.event-log__event-name {
+	flex-basis: 285px;
+}
+
+.event-log__callback {
+	flex-basis: 285px;
+}
+
+.event-log__args {
+	flex-basis: 90px;
 }

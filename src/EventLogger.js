@@ -59,7 +59,25 @@ class EventLogger extends PureComponent {
   render() {
     return (
       <div className="event-logger" ref={this._setLoggerNode}>
-        {this.renderLogs()}
+        <div className="event-logger__header">
+          <div className="event-log">
+            <div className="event-log__column event-log__category">
+              <span>Category</span>
+            </div>
+            <div className="event-log__column event-log__event-name">
+              <span>Event Name</span>
+            </div>
+            <div className="event-log__column event-log__callback">
+              <span>Callback</span>
+            </div>
+            <div className="event-log__column event-log__args">
+              <span>Args</span>
+            </div>
+          </div>
+        </div>
+        <div className="event-logger__logs">
+          {this.renderLogs()}
+        </div>
       </div>
     );
   }

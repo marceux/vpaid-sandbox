@@ -1,31 +1,51 @@
 import React, { PureComponent } from 'react';
 import './App.css';
 
-import EventLogger from './EventLogger';
 import Notifications from './Notifications';
-import SettingsForm from './SettingsForm';
-import VideoWrapper from './VideoWrapper';
+import VASTForm from './VASTForm';
 
 class App extends PureComponent {
   constructor(props) {
     super(props);
 
+    // Default State
     this.state = {
-      settings: {},
+      hasUpdated: false,
     };
 
+    // Default Properties
+    this.notifyDelay = 2500;
+
     // Bind Methods
-    this._handleVastChange = this._handleVastChange.bind(this);
+    this.resetState = this.resetState.bind(this);
+    this.updateTag = this.updateTag.bind(this);
   }
 
-  _handleVastChange(settings) {
-    this.setState(prevState => Object.assign({}, prevState, { settings }));
+  componentDidUpdate(prevProps, prevState) {
+    // If our state "hasUpdated" we are going to set a notification timeout
+    // At the end of that timeout, we are going to 
+    if (!prevState.hasUpdated && this.state.hasUpdated) {
+      this.notifyTimeout = setTimeout(this.resetState, this.notifyDelay);
+    } else if (!this.state.hasUpdated && this.notifyTimeout) {
+      clearTimeout(this.notifyTimeout);
+    }
+  }
+
+  resetState() {
+    if (this.state.hasUpdated) {
+      this.setState(prevState => ({ hasUpdated: false }));
+    }
+  }
+
+  updateTag(tag) {
+    this.setState(prevState => ({ vastTag: tag, hasUpdated: true }));
   }
 
   render() {
-    const { settings } = this.state;
-    const { custom, url } = settings;
-    const loadVideoJS = (custom !== undefined || url !== undefined);
+    const { hasUpdated } = this.state;
+
+    console.log('hasUpdated Value');
+    console.log(hasUpdated);
 
     return (
       <div className="app">
@@ -33,16 +53,9 @@ class App extends PureComponent {
           <h1>Barons VPAID Sandbox</h1>
         </div>
         
-        <VideoWrapper loadVideoJS={loadVideoJS} vastURL={url} vastTag={custom} />
+        <VASTForm updateTag={this.updateTag} />
 
-        <Notifications settings={settings} />
-
-        <SettingsForm
-          disable={Boolean(url || custom)}
-          onSaveVast={this._handleVastChange}
-        />
-
-        <EventLogger />
+        <Notifications hasUpdated={hasUpdated} />
       </div>
     );
   }
